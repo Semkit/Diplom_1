@@ -2,22 +2,21 @@ import pytest
 from practikum.bun import Bun
 
 
-@pytest.mark.parametrize("name, price", [
-    ("white bun", 100),
-    ("black bun", 150),
-    ("sesame bun", 120)
-])
-def test_bun_creation(name, price):
-    bun = Bun(name, price)
-    assert bun.get_name() == name
-    assert bun.get_price() == price
+class TestBun:
+    @pytest.mark.parametrize("name, price", [
+        ("Флюоресцентная булка R2-D3", 988.01),
+        ("Краторная булка N-200i", 1255.00),
+        ("Базовая булка 1337", 420.88)
+    ])
+    def test_bun_creation(self, name, price):
+        bun = Bun(name, price)
+        assert bun.get_name() == name and type(bun.get_name()) == str
+    @pytest.mark.parametrize("name, price", [
+        ("Флюоресцентная булка R2-D3", 988.01),
+        ("Краторная булка N-200i", 1255.00),
+        ("Базовая булка 1337", 420.88)
+    ])
+    def test_bun_price(self, name, price):
+        bun = Bun(name, price)
+        assert bun.get_price() == price and type(bun.get_price()) == float
 
-
-def test_bun_name():
-    bun = Bun("wheat bun", 110)
-    assert bun.get_name() == "wheat bun"
-
-
-def test_bun_price():
-    bun = Bun("rye bun", 130)
-    assert bun.get_price() == 130
